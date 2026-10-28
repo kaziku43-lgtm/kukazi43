@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media</title>
+    <link rel="icon" href="setec.jpg">
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+        audio {
+            display: block;
+            margin-bottom: 20px;
+        }
+        .media-container {
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
+</head>
+<body>
+    <a href="HavSavin.docx" download>download word</a><br>
+    <a href="Melbourne - The Foreign City.pptx" download>download powerpoint</a><br>
+    <a href="NewJeans 'New Jeans (ft. The Powerpuff Girls)' Lyrics (뉴진스 New Jeans 가사) (Color Coded Lyrics).mp4" download>download video mp4</a><br>
+    <a href="Michael Jackson - Billie Jean (Official Video).mp3" download>download sound </a><br>
+    <a href="front-midterm.pdf" download>download pdf</a><br>
+    <a href="Exel 1.xlsx" download>download excel</a><br>
+    <a href="website.zip" download>download zip or rar</a><br>
+    <a href="kevin'.jpg" download>download image</a><br>
+    <audio controls 
+    loop 
+    autoplay 
+    muted>
+        <source src="seasons.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <div class="media-container">
+        <iframe
+            width="50%"
+            height="400"
+            allowfullscreen
+            loading="lazy"
+            src="https://maps.google.com/maps?q=Phnom%20Penh&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            frameborder="1">
+            Your browser does not support iframes.
+            </iframe>
+            <iframe  
+            width="50%" 
+            height="400" 
+            autoplay
+            loop
+            muted
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowfullscreen
+            src="https://www.youtube.com/embed/Lbtw0vlOgvs?autoplay=1&mute=1&loop=1&playlist=Lbtw0vlOgvs" 
+            allowfullscreen>Your browser does not support iframes.
+        </iframe>
+    </div>
+    <div class="media-container">
+        <video
+            width="50%"
+            height="400"
+            controls
+            autoplay
+            muted
+            frameborder="1"
+            src="NewJeans 'New Jeans (ft. The Powerpuff Girls)' Lyrics (뉴진스 New Jeans 가사) (Color Coded Lyrics).mp4">
+        </video>
+        <iframe
+        width="50%"
+        height="400"
+        controls
+        src="kevin'.jpg"></iframe>
+    </div>
+</body>
+</html>

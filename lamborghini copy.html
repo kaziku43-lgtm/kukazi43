@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FLASH</title>
+    <link rel="icon" href="pic/icon.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #0b0c10;
+            color: #e0e2ec;
+        }
+
+        .header {
+            background-color: rgba(15, 16, 20, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f222e;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.8rem 2rem;
+        }
+
+        .nav-logo a {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            width: 120px;
+            object-fit: contain;
+        }
+
+        .nav-center {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 0;
+        }
+
+        .nav-center>li {
+            position: relative;
+        }
+
+        .nav-center a {
+            text-decoration: none;
+            color: #d1d5db;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 0.6rem 0.4rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-center a:hover {
+            color: #ff3344;
+        }
+
+        .nav-center a.active {
+            color: #ff3344;
+            border-bottom: 2px solid #ff3344;
+        }
+
+        .arrow-icon {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .arrow-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Dropdown Menu Box */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #121318;
+            min-width: 190px;
+            list-style: none;
+            padding: 0.5rem 0;
+            border-radius: 8px;
+            border: 1px solid #252836;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        .dropdown-menu li a {
+            display: block;
+            padding: 0.6rem 1.2rem;
+            color: #9ca3af;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: #1c1e27;
+            color: #ff3344;
+            padding-left: 1.5rem;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .flag-icon {
+            width: 16px;
+            height: 11px;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.4rem;
+        }
+
+        .icon-link {
+            position: relative;
+            color: #9ca3af;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-link:hover {
+            color: #ff3344;
+            transform: translateY(-2px);
+        }
+
+        .badge {
+            position: absolute;
+            top: -7px;
+            right: -9px;
+            background-color: #ff3344;
+            color: #ffffff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* container */
+        .container {
+            max-width: 1350px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Card Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #ffffff;
+            background: linear-gradient(90deg, transparent, rgba(255, 51, 68, 0.12), transparent);
+            padding: 10px 0;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        /* Card */
+        .car-card {
+            background-color: #12141c;
+            border: 1px solid #202433;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .car-card:hover {
+            transform: translateY(-8px);
+            border-color: #ff3344;
+            box-shadow: 0 12px 30px rgba(255, 51, 68, 0.18);
+        }
+
+        .image-box {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            background-color: #08090c;
+        }
+
+        .car-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .car-card:hover .car-img {
+            transform: scale(1.08);
+        }
+
+        .badge-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: #ff3344;
+            color: #ffffff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .card-actions {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .action-btn {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(18, 20, 28, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.25s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .action-btn:hover {
+            background-color: #ff3344;
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .card-info {
+            padding: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .brand-name {
+            color: #ff3344;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .car-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #f3f4f6;
+            margin: 4px 0 12px 0;
+        }
+
+        .specs-row {
+            display: flex;
+            justify-content: space-between;
+            background-color: #0b0c10;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            color: #9ca3af;
+            margin-bottom: 1.4rem;
+            border: 1px solid #1a1d28;
+        }
+
+        .specs-row strong {
+            color: #ffffff;
+        }
+
+        .card-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 0.8rem;
+            border-top: 1px solid #1f222e;
+        }
+
+        .price-tag {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .btn-reserve {
+            background-color: #ff3344;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 700;
+            padding: 8px 18px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .btn-reserve:hover {
+            background-color: #cc1b2b;
+            color: #ffffff;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            scroll-margin-top: 90px;
+        }
+
+        /* footer */
+        .site-footer {
+            background-color: #090a0d;
+            color: #9ca3af;
+            padding: 50px 0 25px 0;
+            margin-top: 60px;
+            border-top: 2px solid #ff3344;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .footer-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-main-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 35px;
+        }
+
+        .footer-col h4 {
+            color: #ffffff;
+            font-size: 1.15rem;
+            margin-bottom: 18px;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .footer-col p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: #9ca3af;
+        }
+
+        /* School Card */
+        .school-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #12141c;
+            border: 1px solid #1f222e;
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-top: 15px;
+            width: fit-content;
+        }
+
+        .school-img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            background: #ffffff;
+            padding: 4px;
+            border-radius: 8px;
+        }
+
+        .school-info h5 {
+            color: #ffffff;
+            margin: 0 0 3px 0;
+            font-size: 0.95rem;
+        }
+
+        .school-info span {
+            color: #ff3344;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s, padding-left 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #ff3344;
+            padding-left: 6px;
+        }
+
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .contact-list li {
+            margin-bottom: 12px;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #d1d5db;
+        }
+
+        .contact-list i {
+            color: #ff3344;
+            font-size: 1rem;
+            width: 18px;
+        }
+
+        .contact-list a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-list a:hover {
+            color: #ff3344;
+        }
+
+        .footer-divider {
+            border: none;
+            border-top: 1px solid #1f222e;
+            margin: 25px 0;
+        }
+
+        .footer-members {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 15px 0;
+        }
+
+        .member-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #12141c;
+            border: 1px solid #1f222e;
+            padding: 12px 20px;
+            border-radius: 12px;
+            min-width: 260px;
+        }
+
+        .member-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ff3344;
+        }
+
+        .member-text h5 {
+            color: #ffffff;
+            font-size: 0.95rem;
+            margin: 0 0 3px 0;
+        }
+
+        .member-text .role {
+            color: #ff3344;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin: 0 0 2px 0;
+            text-transform: uppercase;
+        }
+
+        .member-text span {
+            color: #9ca3af;
+            font-size: 0.78rem;
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.82rem;
+            color: #6b7280;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-top: 10px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 14px;
+        }
+
+        .footer-socials a {
+            color: #9ca3af;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        .footer-socials a:hover {
+            color: #ff3344;
+            transform: translateY(-2px);
+        }
+
+        /* responsive */
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 992px) {
+            .car-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .car-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- header -->
+    <header class="header">
+        <nav class="navbar">
+
+            <div class="nav-logo">
+                <a href="home.html">
+                    <img src="pic/flash.png" class="logo-img" alt="FLASH Logo">
+                </a>
+            </div>
+
+            <!-- MENU -->
+            <ul class="nav-center">
+                <li><a href="home copy.html">ទំព័រដើម</a></li>
+
+                <!-- Lamborghini -->
+                <li class="dropdown">
+                    <a href="lamborghini copy.html"  class="active">ឡាំបូហ្គីនី<i class="fa-solid fa-chevron-down arrow-icon"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="lamborghini copy.html#revuelto">Revuelto</a></li>
+                        <li><a href="lamborghini copy.html#aventador">Aventador SVJ</a></li>
+                        <li><a href="lamborghini copy.html#huracan">Huracán</a></li>
+                        <li><a href="lamborghini copy.html#sian">Sián FKP 37</a></li>
+                    </ul>
+                </li>
+
+                <!-- Ferrari -->
+                <li class="dropdown">
+                    <a href="ferrari copy.html">ហ្វឺរ៉ារី<i class="fa-solid fa-chevron-down arrow-icon"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="ferrari copy.html">296 GTB</a></li>
+                        <li><a href="ferrari copy.html#12cilindri">12Cilindri</a></li>
+                        <li><a href="ferrari copy.html#sf90">SF90 Stradale</a></li>
+                        <li><a href="ferrari copy.html">F80</a></li>
+                    </ul>
+                </li>
+
+                <!-- Porsche -->
+                <li class="dropdown">
+                    <a href="porsche copy.html">ព័រស្ហឺ<i class="fa-solid fa-chevron-down arrow-icon"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="porsche copy.html">911 Turbo S</a></li>
+                        <li><a href="porsche copy.html#911-gt3">911 GT3 RS</a></li>
+                        <li><a href="porsche copy.html">918 Spyder</a></li>
+                    </ul>
+                </li>
+
+                <!-- Bugatti -->
+                <li class="dropdown">
+                    <a href="bugatti copy.html">ប៊ូហ្គាទី<i class="fa-solid fa-chevron-down arrow-icon"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="bugatti copy.html">Chiron Super Sport</a></li>
+                        <li><a href="bugatti copy.html#tourbillon">Tourbillon</a></li>
+                        <li><a href="bugatti copy.html#bolide">Bolide</a></li>
+                        <li><a href="bugatti copy.html">La Voiture Noire</a></li>
+                    </ul>
+                </li>
+
+                <!-- Language Selector -->
+                <li class="dropdown">
+                    <a href="#language">
+                        <img src="https://flagcdn.com/w40/us.png" class="flag-icon" alt="EN"> English <i
+                            class="fa-solid fa-chevron-down arrow-icon"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="lamborghini copy.html">
+                                <img src="https://flagcdn.com/w40/kh.png" class="flag-icon" alt="KH"> ភាសាខ្មែរ
+                            </a>
+                        </li>
+                        <li>
+                            <a href="lamborghini copy.html">
+                                <img src="https://flagcdn.com/w40/us.png" class="flag-icon" alt="EN"> English
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="nav-right">
+                <a href="#account" class="icon-link" title="My Account">
+                    <i class="fa-regular fa-user"></i>
+                </a>
+                <a href="#wishlist" class="icon-link" title="Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="badge">0</span>
+                </a>
+                <a href="#cart" class="icon-link" title="Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="badge">0</span>
+                </a>
+            </div>
+
+        </nav>
+    </header>
+
+    <!-- container -->
+    <div class="container">
+
+        <!-- Section 1: Revuelto -->
+        <div class="section" id="revuelto">
+            <div class="section-header">
+                <h2>Model 1: Revuelto</h2>
+            </div>
+            <div class="car-grid">
+                <!-- Card 1 -->
+                <div class="car-card">
+                    <div class="image-box">
+                        <img src="https://www.anmodelcars.com/60428-product_main/lamborghini-revuelto-na63-bianco-sideralis-143-looksmart.jpg"
+                            alt="Lamborghini Revuelto NA63" class="car-img">
+                        <span class="badge-tag">Hybrid V12</span>
+
+                        <div class="card-actions">
+                            <a href="#favorite" class="action-btn" title="Add to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </a>
+                            <a href="#view" class="action-btn" title="View Detail">
+                                <i class="fa-regular fa-eye"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card-info">
+                        <span class="brand-name">LAMBORGHINI</span>
+                        <h3 class="car-title">Revuelto NA63</h3>
+
+                        <div class="specs-row">
+                            <span>0-100: <strong>2.5s</strong></span>
+                            <span>Power: <strong>1001 HP</strong></span>
+                            <span>Speed: <strong>350 km/h</strong></span>
+                        </div>
+
+                        <div class="card-bottom">
+                            <span class="price-tag">$608,000</span>
+                            <a href="#order" class="btn-reserve">Reserve</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="car-card">
+                    <div class="image-box">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMjqgKYXKr9DnocxMosmmCAkRGL-x_zvHmnXjPs2zOkB4Wgc_UZSslcjJU&s=10"
+                            alt="Lamborghini Revuelto Impavido" class="car-img">
+                        <span class="badge-tag">Custom Edition</span>
+
+                        <div class="card-actions">
+                            <a href="#favorite" class="action-btn" title="Add to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </a>
+                            <a href="#view" class="action-btn" title="View Detail">
+                                <i class="fa-regular fa-eye"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card-info">
+                        <span class="brand-name">LAMBORGHINI</span>
+                        <h3 class="car-title">Revuelto Impavido</h3>
+
+                        <div class="specs-row">
+                            <span>0-100: <strong>2.5s</strong></span>
+                            <span>Power: <strong>1001 HP</strong></span>
+                            <span>Speed: <strong>350 km/h</strong></span>
+                        </div>
+
+                        <div class="card-bottom">
+                            <span class="price-tag">$650,000</span>
+                            <a href="#order" class="btn-reserve">Reserve</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="car-card">
+                    <div class="image-box">
+                        <img src="https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2026%2F08%2F18%2Flamborghini-revuelto-sv-debuts-with-1050-hp-hybrid-1.jpg?q=90&w=800&cbr=1&fit=max"
+                            alt="Lamborghini Revuelto SV" class="car-img">
+                        <span class="badge-tag">Track Edition</span>
+
+                        <div class="card-actions">
+                            <a href="#favorite" class="action-btn" title="Add to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </a>
+                            <a href="#view" class="action-btn" title="View Detail">
+                                <i class="fa-regular fa-eye"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card-info">
+                        <span class="brand-name">LAMBORGHINI</span>
+                        <h3 class="car-title">Revuelto SV</h3>
+
+                        <div class="specs-row">
+                            <span>0-100: <strong>2.4s</strong></span>
+                            <span>Power: <strong>1050 HP</strong></span>
+                            <span>Speed: <strong>355 km/h</strong></span>
+                        </div>
+
+                        <div class="card-bottom">
+                            <span class="price-tag">$720,000</span>
+                            <a href="#order" class="btn-reserve">Reserve</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Aventador SVJ -->
+        <div class="section" id="aventador">
+            <div class="section-header">
+                <h2>Model 2: Aventador SVJ</h2>
+            </div>
+            <div class="car-grid">
+                <!-- Card 1 -->
+                <div class="car-card">
+                    <div class="image-box">
+                        <img src="https://res.cloudinary.com/unix-center/image/upload/c_limit,dpr_3.0,f_auto,fl_progressive,g_center,h_580,q_75,w_906/k6he0ktcmvcyq27zuhtz.jpg"
+                            alt="Lamborghini Aventador SVJ Coupe" class="car-img">
+                        <span class="badge-tag">V12 N/A</span>
+
+                        <div class="card-actions">
+                            <a href="#favorite" class="action-btn" title="Add to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </a>
+                            <a href="#view" class="action-btn" title="View Detail">
+                                <i class="fa-regular fa-eye"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card-info">
+                        <span class="brand-name">LAMBORGHINI</span>
+                        <h3 class="car-title">Aventador SVJ Coupe</h3>
+
+                        <div class="specs-row">
+                            <span>0-100: <strong>2.8s</strong></span>
+                            <span>Power: <strong>759 HP</strong></span>
+                            <span>Speed: <strong>352 km/h</strong></span>
+                        </div>
+
+                        <div class="card-bottom">
+                            <span class="price-tag">$517,700</span>
+                            <a href="#order" class="btn-reserve">Reserve</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="car-card">
+                    <div class="image-box">
+                        <img src="https://cdn-ds.com/blogs-media/sites/492/2019/08/31084720/Lamborghini-Aventador-SVJ-63-A2_o.jpg"
+                            alt="Lamborghini Aventador SVJ 63" class="car-img">
+                        <span class="badge-tag">1 of 63</span>
+
+                        <div class="card-actions">
+                            <a href="#favorite" class="action-btn" title="Add to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </a>
+                            <a href="#view" class="action-btn" title="View Detail">
+                                <i class="fa-regular fa-eye"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card-info">
+                        <span class="brand-name">LAMBORGHINI</span>
+                        <h3 class="car-title">Aventador SVJ 63</h3>
+
+                        <div class="specs-row">
+                            <span>0-100: <strong>2.8s</strong></span>
+                            <span>Power: <strong>759 HP</strong></span>
+                            <span>Speed: <strong>352 km/h</strong></span>
+                        </div>
+
+                        <div class="card-bottom">
+                            <span class="price-tag">$650,000</span>
+                            <a href="#order" class="btn-reserve">Reserve</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="car-card">
+                    <div class="image-box">
+                        <img src="https://www.digitaltrends.com/tachyon/2020/01/lamborghini_aventador_svj_roadster_1.jpg?resize=1200%2C720"
+                            alt="Lamborghini Aventador SVJ Roadster" class="car-img">
+                        <span class="badge-tag">Roadster</span>
+
+                        <div class="card-actions">
+                            <a href="#favorite" class="action-btn" title="Add to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </a>
+                            <a href="#view" class="action-btn" title="View Detail">
+                                <i class="fa-regular fa-eye"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card-info">
+                        <span class="brand-name">LAMBORGHINI</span>
+                        <h3 class="car-title">Aventador SVJ Roadster</h3>
+
+                        <div class="specs-row">
+                            <span>0-100: <strong>2.9s</strong></span>
+                            <span>Power: <strong>759 HP</strong></span>
+                            <span>Speed: <strong>350 km/h</strong></span>
+                        </div>
+
+                        <div class="card-bottom">
+                            <span class="price-tag">$573,900</span>
+                            <a href="#order" class="btn-reserve">Reserve</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Huracán -->
+        <div class="section" id="huracan">
+            <div class="section-header">
+                <h2>Model 3: Huracán</h2>
+            </div>
+            <div class="car-grid">
+                <!-- Card 1 -->
+                <div class="car-card">
+                    <div class="image-box">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEZgyeq00Vr2sttdH09qTBRJNuuN98UYEmC8BppVtX_ilH8oU7Q-c5TBtV&s=10"
+                            alt="Lamborghini Huracán STO SC 10 Anniversario" class="car-img">
+                        <span class="badge-tag">Only 1</span>
+
+                        <div class="card-actions">
+                            <a href="#favorite" class="action-btn" title="Add to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </a>
+                            <a href="#view" class="action-btn" title="View Detail">
+                                <i class="fa-regular fa-eye"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card-info">
+                        <span class="brand-name">LAMBORGHINI</span>
+                        <h3 class="car-title">Huracán STO SC 10° Anniversario</h3>
+
+                        <div class="specs-row">
+                            <span>0-100: <strong>3.0s</strong></span>
+                            <span>Power: <strong>631 HP</strong></span>
+                            <span>Speed: <strong>310 km/h</strong></span>
+                        </div>
+
+                        <div class="card-bottom">
+                            <span class="price-tag">$450,000</span>
+                            <a href="#order" class="btn-reserve">Reserve</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="car-card">
+                    <div class="image-box">
+                        <img src="https://www.thesupercarblog.com/wp-content/uploads/2023/02/Lamborghini-huracan_sto_time_chaser_111100-1.jpg"
+                            alt="Lamborghini Huracán STO Time Chaser" class="car-img">
+                        <span class="badge-tag">Art Car (1/1)</span>
+
+                        <div class="card-actions">
+                            <a href="#favorite" class="action-btn" title="Add to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </a>
+                            <a href="#view" class="action-btn" title="View Detail">
+                                <i class="fa-regular fa-eye"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card-info">
+                        <span class="brand-name">LAMBORGHINI</span>
+                        <h3 class="car-title">Huracán STO Time Chaser</h3>
+
+                        <div class="specs-row">
+                            <span>0-100: <strong>3.0s</strong></span>
+                            <span>Power: <strong>631 HP</strong></span>
+                            <span>Speed: <strong>310 km/h</strong></span>
+                        </div>
+
+                        <div class="card-bottom">
+                            <span class="price-tag">$400,000</span>
+                            <a href="#order" class="btn-reserve">Reserve</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Sián -->
+        <div class="section" id="sian">
+            <div class="section-header">
+                <h2>Model 4: Sián</h2>
+            </div>
+            <div class="car-grid">
+                <!-- Card 1 -->
+                <div class="car-card">
+                    <div class="image-box">
+                        <img src="https://cdn.motor1.com/images/mgl/A8N6L/s1/lamborghini-sian.jpg"
+                            alt="Lamborghini Sián FKP 37" class="car-img">
+                        <span class="badge-tag">1 of 63</span>
+
+                        <div class="card-actions">
+                            <a href="#favorite" class="action-btn" title="Add to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </a>
+                            <a href="#view" class="action-btn" title="View Detail">
+                                <i class="fa-regular fa-eye"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card-info">
+                        <span class="brand-name">LAMBORGHINI</span>
+                        <h3 class="car-title">Sián FKP 37</h3>
+
+                        <div class="specs-row">
+                            <span>0-100: <strong>2.8s</strong></span>
+                            <span>Power: <strong>808 HP</strong></span>
+                            <span>Speed: <strong>355 km/h</strong></span>
+                        </div>
+
+                        <div class="card-bottom">
+                            <span class="price-tag">$3,700,000</span>
+                            <a href="#order" class="btn-reserve">Reserve</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="car-card">
+                    <div class="image-box">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJEBvZE9ShQjCkiH78gg3M0je7dGz-zdxpVsVhVH9jkCWj_OWXeS0itkMV&s=10"
+                            alt="Lamborghini Sián Roadster" class="car-img">
+                        <span class="badge-tag">1 of 19</span>
+
+                        <div class="card-actions">
+                            <a href="#favorite" class="action-btn" title="Add to Wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </a>
+                            <a href="#view" class="action-btn" title="View Detail">
+                                <i class="fa-regular fa-eye"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card-info">
+                        <span class="brand-name">LAMBORGHINI</span>
+                        <h3 class="car-title">Sián Roadster</h3>
+
+                        <div class="specs-row">
+                            <span>0-100: <strong>2.9s</strong></span>
+                            <span>Power: <strong>808 HP</strong></span>
+                            <span>Speed: <strong>350 km/h</strong></span>
+                        </div>
+
+                        <div class="card-bottom">
+                            <span class="price-tag">$4,000,000</span>
+                            <a href="#order" class="btn-reserve">Reserve</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+
+            <!-- Main Top Grid -->
+            <div class="footer-main-grid">
+
+                <!-- School & Project Info -->
+                <div class="footer-col">
+                    <h4>FLASH Supercars Project</h4>
+                    <p>Website project showcasing high-performance luxury exotic vehicles.</p>
+
+                    <!-- School Picture & Name -->
+                    <div class="school-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4MMIsBPZrcbHIiFdjEw0hlR8RSS1J_-pfi8gManhh6-pT_oMMq2SeWL8&s=10" alt="SETEC Institute" class="school-img"
+                            onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Setec_institute_logo.png/640px-Setec_institute_logo.png'">
+                        <div class="school-info">
+                            <h5>SETEC Institute</h5>
+                            <span>Management Information System</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="lamborghini copy.html">Lamborghini</a></li>
+                        <li><a href="ferrari copy.html">Ferrari</a></li>
+                        <li><a href="porsche copy.html">Porsche</a></li>
+                        <li><a href="bugatti copy.html">Bugatti</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Me -->
+                <div class="footer-col">
+                    <h4>Contact Me</h4>
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fa-solid fa-user"></i>
+                            <span>Orn Samnang</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Phnom Penh, Cambodia</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <a href="tel:+85512345678">+855 96 440 8870</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-envelope"></i>
+                            <a href="mailto:chingpav@flash.com">ornsamnang499@gmail.com</a>
+                        </li>
+                        <li>
+                            <i class="fa-brands fa-telegram"></i>
+                            <a href="https://t.me/S_A_N_JI" target="_blank">telegram</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <hr class="footer-divider">
+
+            <div class="footer-members">
+
+                <!-- Teacher -->
+                <div class="member-card">
+                    <img src="pic/teacher.jpg" alt="Lecturer" class="member-avatar"
+                        onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
+                    <div class="member-text">
+                        <h5>Ry Visan</h5>
+                        <p class="role">Lecturer</p>
+                        <span>Project Supervisor</span>
+                    </div>
+                </div>
+
+                <!-- Student -->
+                <div class="member-card">
+                    <img src="pic/nang.JPEG" alt="Student" class="member-avatar"
+                        onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135768.png'">
+                    <div class="member-text">
+                        <h5>Orn Samnang</h5>
+                        <p class="role">Student</p>
+                        <span>Group SX34 || Year 1</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="footer-divider">
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p> All rights reserved.</p>
+                <div class="footer-socials">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>
